@@ -1,14 +1,11 @@
 package com.nighthawk.spring_portfolio.mvc.person;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.GregorianCalendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Type;
@@ -66,8 +64,15 @@ public class Person {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dob;
-    
 
+    @Positive
+    private Integer height;
+
+    @Positive
+    private Integer weight;
+
+    @Positive
+    private Integer goalStep;
     /* HashMap is used to store JSON for daily "stats"
     "stats": {
         "2022-11-13": {
@@ -79,17 +84,17 @@ public class Person {
     @Type(type="json")
     @Column(columnDefinition = "jsonb")
     private Map<String,Map<String, Object>> stats = new HashMap<>(); 
-
-    // ArrayList of stats
-    private ArrayList<Map<String,Map<String, Object>>> statArray = new ArrayList<Map<String,Map<String, Object>>>();
     
 
     // Constructor used when building object from an API
-    public Person(String email, String password, String name, Date dob) {
+    public Person(String email, String password, String name, Date dob, Integer height, Integer weight) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.dob = dob;
+        this.height = height;
+        this.weight = weight;
+        this.goalStep = (height/2 + weight)*70;
     }
 
     // A custom getter to return age from dob attribute
@@ -100,18 +105,15 @@ public class Person {
         return -1;
     }
 
-    // main class as a tester
-    public static void main(String[] args) {
-        // Person empty object
-        Person p1 = new Person();
+    public String toString() {
+        return ( "{ \"name\": "  +this.name+  ", " + "\"email\": "  +this.email+  ", " + "\"password\": "  +this.password+  ", " + "\"dateOfBirth\": "  +this.dob+  ", " + "\"age\": "  +this.getAge()+ ", " + "\"height(cm)\": "  +this.height+ ", " + "\"weight(kg)\": "  +this.weight+ ", " + "\"stepgoal\": "  +this.goalStep+ " }" );
+    }
 
-        // using gregorian calendar to initialize tester date object
-        Date dob2 = new GregorianCalendar(1996, 10, 20).getTime();
-        Person p2 = new Person("jimmycricket@gmail.com", "jimmy", "Jimmy Bong", dob2);
-        
-        
+    public static void main(String[] args) {
+        Person p0 = new Person();
+        Person p1 = new Person("jimmycricket@gmail.com", "jimmy", "Jimmy Criget", new java.util.GregorianCalendar(1999,11,20).getTime(), 500, 200);
+        System.out.println(p0);
         System.out.println(p1);
-        System.out.println(p2);
-     }
+    }
 
 }
