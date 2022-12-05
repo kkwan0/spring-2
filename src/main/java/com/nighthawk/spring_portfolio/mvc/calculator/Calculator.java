@@ -25,6 +25,7 @@ public class Calculator {
     private final Map<String, Integer> OPERATORS = new HashMap<>();
     {
         // Map<"token", precedence>
+        OPERATORS.put("log", 5);
         OPERATORS.put("exp", 2);
         OPERATORS.put("^", 2);
         OPERATORS.put("*", 3);
@@ -135,6 +136,7 @@ public class Calculator {
                 case "/":
                 case "%":
                 case "^":
+                case "log":
                 case "exp":
                
                 
