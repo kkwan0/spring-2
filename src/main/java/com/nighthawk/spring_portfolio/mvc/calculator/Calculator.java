@@ -279,8 +279,9 @@ public class Calculator {
     }
 
     public String toString() {
-        return ( "{ \"Expression\": \"" + this.expression + "\", \"Tokens\": \"" + this.tokens + "\", \"RPN\": \"" + this.reverse_polish + "\", \"Result\": " + this.result + " }" );
+        return ( "{ \"Expression\": \""  + this.expression + "\", \"Parenthesis Check\": \""+ this.parenthesesCheck() + "\", \"Tokens\": \"" + this.tokens + "\", \"RPN\": \"" + this.reverse_polish + "\", \"Result\": " + this.result + " }" );   
     }
+   
     public static void main(String[] args) {
         // Random set of test cases
         Calculator simpleMath = new Calculator("1 + 1  * 2");
@@ -315,5 +316,9 @@ public class Calculator {
 
         System.out.println("Parenthesis imbalance error:");
         Calculator parenthesisError = new Calculator("((3+26)*2");
+
+        
     }
+
+    
 } 
