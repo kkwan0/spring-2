@@ -149,7 +149,7 @@ public class Calculator {
                     {
                         // variable resolves to 0 for it to work
                         this.reverse_polish.add("0");
-                        this.expression = "Error with parsing your expression \'" + this.expression + "\'. Please enter valid inputs and try again.";
+                     //   this.expression = "Error with parsing your expression \'" + this.expression + "\'. Please enter valid inputs and try again.";
                         break;
                     }
                     this.reverse_polish.add(token);
