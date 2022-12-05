@@ -235,5 +235,40 @@ public class Calculator {
                 "Final result: " + String.format("%.2f", this.result));
     }
 
-  
+    // Tester method
+    public static void main(String[] args) {
+        // Random set of test cases
+        Calculator simpleMath = new Calculator("1 + 1  * 2");
+        System.out.println("Simple Math\n" + simpleMath);
+
+        System.out.println();
+
+        Calculator parenthesisMath = new Calculator("(1 + 1)  * 2");
+        System.out.println("Parenthesis Math\n" + parenthesisMath);
+
+        System.out.println();
+
+        Calculator decimalMath = new Calculator("1.2 - 1.6");
+        System.out.println("Decimal Math\n" + decimalMath);
+
+        System.out.println();
+
+        Calculator moduloMath = new Calculator("2 % 1");
+        System.out.println("Modulo Math\n" + moduloMath);
+
+        System.out.println();
+
+        Calculator divisionMath = new Calculator("50/5");
+        System.out.println("Division Math\n" + divisionMath);
+
+        System.out.println();
+
+        Calculator powerMath = new Calculator("6^4");
+        System.out.println("Power Math\n" + powerMath);
+
+        System.out.println();
+
+        System.out.println("Parenthesis imbalance error:");
+        Calculator parenthesisError = new Calculator("((3+26)*2");
+    }
 }
