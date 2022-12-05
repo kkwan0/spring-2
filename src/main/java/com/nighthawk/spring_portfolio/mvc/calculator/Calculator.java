@@ -149,7 +149,7 @@ public class Calculator {
                 case "*":
                 case "/":
                 case "%":
-                case "^": //power 
+                case "^": //power
 
                     // While stack
                     // not empty AND stack top element
