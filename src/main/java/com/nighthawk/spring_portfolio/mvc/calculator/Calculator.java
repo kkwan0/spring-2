@@ -25,10 +25,8 @@ public class Calculator {
     private final Map<String, Integer> OPERATORS = new HashMap<>();
     {
         // Map<"token", precedence>
-        OPERATORS.put("log", 5);
         OPERATORS.put("exp", 2);
         OPERATORS.put("^", 2);
-        OPERATORS.put("ncr", 2);
         OPERATORS.put("*", 3);
         OPERATORS.put("/", 3);
         OPERATORS.put("%", 3);
@@ -137,25 +135,9 @@ public class Calculator {
                 case "/":
                 case "%":
                 case "^":
-                case "log":
                 case "exp":
-                case "ncr":
-                    // While stack has stuff and the top of the stack is an operator
-                    while (tokenStack.size() > 0 && isOperator(tokenStack.peek()))
-                    {
-                        if ( isPrecedent(token, tokenStack.peek() )) {
-                            reverse_polish.add(tokenStack.pop());
-                            continue;
-                        }
-                        break;
-                    }
-                    // Push the new operator on the stack
-                    tokenStack.push(token);
-                    break;
-                case "pi":
-                    // pi gets replaced 3.14
-                    this.reverse_polish.add("3.1415");
-                    break;
+               
+                
                 default: 
                     try
                     {
@@ -195,6 +177,7 @@ public class Calculator {
             return true;
         }
     }
+    //maybe make a calculate function that would do this for you,
     private void rpnToResult()
     {
         // stack holds operands and calculations
