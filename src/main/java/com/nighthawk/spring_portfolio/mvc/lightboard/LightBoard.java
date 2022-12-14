@@ -2,6 +2,7 @@ package com.nighthawk.spring_portfolio.mvc.lightboard;
 
 import lombok.Data;
 
+
 @Data  // Annotations to simplify writing code (ie constructors, setters)
 public class LightBoard {
     private Light[][] lights;
@@ -116,6 +117,121 @@ public class LightBoard {
         outString += "\033[m";
 		return outString;
     }
+    public void flag(String flag) {
+
+
+if(flag=="what")        {
+            short rv = 255;
+            short gv = 255;
+            short bv = 255;
+
+
+            
+            // for (int rowz = 0; rowz < 5; rowz++) {
+            //     for (int colz = 0; colz < 3; colz++) {
+                    
+            //         lights[rowz][colz].RGBset(rv,gv,bv);
+            //     }
+                
+            // }
+             
+            // short rva = 255;
+            // short gva = 255;
+            // short bva = 255;
+
+            // for (int rowz = 0; rowz < 5; rowz++) {
+            //     for (int colz = 3; colz < 6; colz++) {
+            //         lights[rowz][colz].RGBset(rva,gva,bva);
+            //     }
+            // } 
+            // short rvb = 255;
+            // short gvb = 0;
+            // short bvb = 0;
+
+            // for (int rowz = 0; rowz < 5; rowz++) {
+            //     for (int colz = 6; colz < 9; colz++) {
+            //         lights[rowz][colz].RGBset(rvb,gvb,bvb);
+            //     }
+
+                
+            // } 
+    
+for (int i = 0; i < 5; i++) {
+   for (int j = 0; j < 10 - i; j++)
+    System.out.print(" ");
+   for (int k = 0; k < (2 * i + 1); k++)
+   lights[i][k].RGBset(rv,gv,bv);
+   System.out.println();
+  }
+//   short rva = 212;
+// short gva = 255;
+//     short bva = 212;
+  
+//   for (int i = 5; i > 1; i--) {
+//     for (int j = 10; j > 2 - i; j--)
+//      System.out.print(" ");
+//     for (int k = 5; k > (i); k--)
+//     lights[i][k].RGBset(rva,gva,bva);
+//     System.out.println();
+//    }
+   short rvb = 0;
+short gvb = 0;
+    short bvb = 0;
+
+   for (int i = 5; i > 0; i--) {
+    for (int j = 10; j < 0 + i; j++)
+    lights[i][j].RGBset(rvb,gvb,bvb);
+    System.out.println();
+   }
+
+   for (int rowz = 0; rowz < 5; rowz++) {
+        for (int colz = 1; colz < 9; colz +=2) {
+            lights[rowz][colz].RGBset(rvb,gvb,bvb);
+        }
+
+        
+    } 
+
+}
+if(flag=="yes"){
+    short rv = 255;
+    short gv = 255;
+    short bv = 255;
+    for (int rowz = 0; rowz < 5; rowz++) {
+        for (int colz = 1; colz < 9; colz +=2) {
+            lights[rowz][colz].RGBset(rv,gv,bv);
+        } 
+    } 
+    short rva = 0;
+    short gva = 0;
+    short bva = 0;
+    for (int rowz = 0; rowz < 5; rowz++) {
+        for (int colz = 0; colz < 9; colz +=2) {
+            lights[rowz][colz].RGBset(rva,gva,bva);
+        } 
+    } 
+    short rvb = 0;
+    short gvb = 0;
+    short bvb = 0;
+    for (int rowz = 1; rowz < 5; rowz += 2) {
+        for (int colz = 1; colz < 9; colz +=2) {
+            lights[rowz][colz].RGBset(rvb,gvb,bvb);
+        } 
+    } 
+    short rvc = 255;
+    short gvc = 255;
+    short bvc = 255;
+    for (int rowz = 1; rowz < 5; rowz += 2) {
+        for (int colz = 0; colz < 9; colz +=2) {
+            lights[rowz][colz].RGBset(rvc,gvc,bvc);
+        } 
+    }
+}
+}
+
+        
+        
+    
     
     static public void main(String[] args) {
         // create and display LightBoard
@@ -123,5 +239,11 @@ public class LightBoard {
         System.out.println(lightBoard);  // use toString() method
         System.out.println(lightBoard.toTerminal());
         System.out.println(lightBoard.toColorPalette());
+        LightBoard flagBoard = new LightBoard(5, 9);
+        flagBoard.flag("what");
+        System.out.println(flagBoard.toColorPalette());
+        flagBoard.flag("yes");
+        System.out.println(flagBoard.toColorPalette());
     }
 }
+
