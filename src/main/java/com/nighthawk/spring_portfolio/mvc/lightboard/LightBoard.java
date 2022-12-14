@@ -1,6 +1,7 @@
 package com.nighthawk.spring_portfolio.mvc.lightboard;
 
 import lombok.Data;
+import java.util.Scanner;
 
 
 @Data  // Annotations to simplify writing code (ie constructors, setters)
@@ -56,6 +57,8 @@ public class LightBoard {
                 lights[row][col].getEffect() + "m" +
                 // data, extract custom getters
                 "{" +
+                "\"" + "isOn\": " + lights[row][col].isOn() +
+                "," +
                 "\"" + "RGB\": " + "\"" + lights[row][col].getRGB() + "\"" +
                 "," +
                 "\"" + "Effect\": " + "\"" + lights[row][col].getEffectTitle() + "\"" +
@@ -86,6 +89,7 @@ public class LightBoard {
                     // repeat each column for block size
                     for (int j = 0; j < COLS; j++) {
                         // print single character, except at midpoint print color code
+                        if (lights[row][col].isOn()) {
                         String c = (i == (int) (ROWS / 2) && j == (int) (COLS / 2) ) 
                             ? lights[row][col].getRGB()
                             : (j == (int) (COLS / 2))  // nested ternary
@@ -109,6 +113,7 @@ public class LightBoard {
                         // reset
                         "\033[m";
                     }
+                }
                 }
                 outString += "\n";
             }
@@ -235,7 +240,18 @@ if(flag=="yes"){
     
     static public void main(String[] args) {
         // create and display LightBoard
-        LightBoard lightBoard = new LightBoard(5, 5);
+
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Number of rows: ");
+        int bRows = scan.nextInt();
+        System.out.println("Number of columns: ");
+        int bCols = scan.nextInt();
+        System.out.println("Height dimension of the boxes: ");
+        int bHeight = scan.nextInt();
+        System.out.println("Length dimension of the boxes: ");
+        int bLength = scan.nextInt();
+        LightBoard lightBoard = new LightBoard(bRows, bCols);
+
         System.out.println(lightBoard);  // use toString() method
         System.out.println(lightBoard.toTerminal());
         System.out.println(lightBoard.toColorPalette());
